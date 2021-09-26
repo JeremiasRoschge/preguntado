@@ -32,14 +32,22 @@ exports.getRender = (req, res) => {
         })
     })
 }
-
+    //POST
 exports.getPost = (req, res) => {
     pool.getConnection((err, connection) => {
-        if(err) throw err;
-        console.log('Conectado a la ID ' + connection.threadId);
-
-        connection.query('INSERT INTO preguntas p INNER JOIN respuestas r ON r.id = p.respuestas_id respuestaElegida = ? WHERE p.id = "biologia"')
-    })
-}
+      if (err) throw err;
+    
+      connection.query('SELECT * FROM preguntas WHERE id = "biologia"', (err, rows) => {
+        connection.release();
+        if (!err) {
+          const pregunta = rows[0];
+          const respuestaElegida = req.body.respuestaElegida;
+  
+          console.log(pregunta)
+          console.log(respuestaElegida)
+        }
+      });
+    });
+  }
 
 
