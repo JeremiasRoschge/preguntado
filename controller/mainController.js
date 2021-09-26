@@ -23,7 +23,6 @@ exports.getRender = (req, res) => {
             connection.release();
 
             if(!err) {
-    console.log(rows)
                 res.render('salud.ejs', { quest: rows[0], answer: rows[0] });  
             } else { 
                 console.log(err);
@@ -42,9 +41,17 @@ exports.getPost = (req, res) => {
         if (!err) {
           const pregunta = rows[0];
           const respuestaElegida = req.body.respuestaElegida;
-  
-          console.log(pregunta)
+
           console.log(respuestaElegida)
+       
+          if (respuestaElegida == pregunta.respuesta_correcta) {
+            res.send({ mensaje: 'CORRECTO'})
+          } else {
+            res.send({ mensaje: 'INCORRECTO'})
+          } 
+
+        } else {
+            console.log(err)
         }
       });
     });

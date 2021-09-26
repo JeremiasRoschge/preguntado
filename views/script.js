@@ -4,11 +4,10 @@ document.querySelectorAll('.btn').forEach(item => {
 
         fetch('http://localhost:3000/salud', {
             method: "POST",
-            body: {respuestaElegida: respuestaElegida}
-        }).then(res => res.json())
+            body: JSON.stringify({ respuestaElegida })
+        }).then(res => res.json)
         .then(data => {
             console.log(data)
         })
-
     })
 })
