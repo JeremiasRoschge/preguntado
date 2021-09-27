@@ -42,7 +42,7 @@ exports.getPost = (req, res) => {
           const pregunta = rows[0];
           const respuestaElegida = req.body.respuestaElegida;
 
-          console.log(respuestaElegida)
+       
        
           if (respuestaElegida == pregunta.respuesta_correcta) {
             res.send({ mensaje: 'CORRECTO'})
@@ -56,5 +56,3 @@ exports.getPost = (req, res) => {
       });
     });
   }
-
-
